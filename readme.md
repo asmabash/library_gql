@@ -18,3 +18,33 @@ To run the project in your local environment:
 ```
   $ strawberry server schema
 ```
+
+GraphQL server should now be available at http://localhost:8000/graphql
+
+## Example usage
+To get all authors, we can run the following query:
+
+```gql
+query GetAuthors {
+  authors {
+    name
+  }
+}
+```
+
+We would get this response from GQL:
+
+```gql
+{
+  "data": {
+    "authors": [
+      {
+        "name": "Clive Thompson"
+      },
+      {
+        "name": "Eric Evans"
+      }
+    ]
+  }
+}
+```
