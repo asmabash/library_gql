@@ -1,3 +1,5 @@
+from src.crud.author import get_authors
+from src.core.database import init_db
 import strawberry
 
 from src.scalars import Author, Book
@@ -24,13 +26,8 @@ class Query:
 
     @strawberry.field
     def authors(root) -> list[Author]:
-        author1 = Author(name="Michael Crichton")
-        book1 = Book(title="Coders", author=author1)
-        book2 = Book(title="Sphere", author=author1)
-        author2 = Author(name="Sheryl Sandberg")
-        book3 = Book(title="Option B", author=author2)
-        author1.books = [book1, book2]
-        author2.books = [book3]
-        return [author1, author2]
+        authors = get_authors()
+        return authors
 
+init_db()
 schema = strawberry.Schema(query=Query)
