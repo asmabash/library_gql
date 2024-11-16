@@ -11,3 +11,7 @@ class Book:
 class Author:
     name: str
     books: Optional[list[Book]] = strawberry.field(default_factory=list)
+
+@strawberry.input
+class AddAuthorInput:
+    name: str

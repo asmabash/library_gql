@@ -1,8 +1,8 @@
-from src.crud.author import get_authors
+from src.crud.author import create_author, get_authors
 from src.core.database import init_db
 import strawberry
 
-from src.scalars import Author, Book
+from src.scalars import AddAuthorInput, Author, Book
 
 
 @strawberry.type
@@ -29,5 +29,12 @@ class Query:
         authors = get_authors()
         return authors
 
+@strawberry.type
+class Mutation:
+    @strawberry.field
+    def add_author(self, author: AddAuthorInput) -> Author:
+        author = create_author(author.name)
+        return author
+
 init_db()
-schema = strawberry.Schema(query=Query)
+schema = strawberry.Schema(query=Query, mutation=Mutation)
