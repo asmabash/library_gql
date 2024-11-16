@@ -34,7 +34,7 @@ query GetAuthors {
 
 We would get this response from GQL:
 
-```gql
+```json
 {
   "data": {
     "authors": [
